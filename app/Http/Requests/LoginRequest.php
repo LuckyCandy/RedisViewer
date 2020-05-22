@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Exceptions\LoginFailedException;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -13,7 +14,18 @@ class LoginRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        /* Indicate default guard */
+        auth()->shouldUse('api');
+
+        return auth()->attempt($this->only('email', 'password'));
+    }
+
+    /**
+     * @throws LoginFailedException
+     */
+    protected function failedAuthorization()
+    {
+        throw new LoginFailedException;
     }
 
     /**

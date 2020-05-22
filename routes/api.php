@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', 'LoginController@login');
 
 Route::middleware('auth:api')->group(function (){
-    Route::get('/', function (){return ['code' => 0, 'data' => ['word' => 'Hello!']];});
+    Route::get('/user', 'UserController@user');
 });

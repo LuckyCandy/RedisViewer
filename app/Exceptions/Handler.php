@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Arr;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,6 +53,23 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($request->expectsJson()) {
+            if ($exception instanceof LoginFailedException) {
+                return response()->jsr(500, [], $exception->getMessage());
+            } elseif ($exception instanceof AuthenticationException) {
+                return response()->jsr(403, [], $exception->getMessage());
+            }
+        }
+
         return parent::render($request, $exception);
+    }
+
+    protected function convertValidationExceptionToResponse(ValidationException $e, $request)
+    {
+        $error = Arr::first($e->errors());
+        if ($request->expectsJson()) {
+            return response()->jsr(500, [], $error[0] ?? "输入的参数有误，请检查");
+        }
+        return parent::convertValidationExceptionToResponse($e, $request);
     }
 }

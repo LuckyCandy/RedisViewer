@@ -882,7 +882,7 @@ var	memoize = function (fn) {
 };
 
 var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
+	// Login for IE <= 9 as proposed by Browserhacks
 	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
 	// Tests for existence of standard globals is to allow style-loader
 	// to operate correctly into non-standard environments
@@ -50647,7 +50647,7 @@ var config = ({
   mustUseProp: no,
 
   /**
-   * Perform updates asynchronously. Intended to be used by Vue Test Utils
+   * Perform updates asynchronously. Intended to be used by Vue Login Utils
    * This will significantly reduce performance if set to false.
    */
   async: true,

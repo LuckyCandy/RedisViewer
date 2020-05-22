@@ -35,15 +35,16 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
     response => {
         ViewUI.LoadingBar.finish();
-        if (response.data.code === 0) {
+        if (response.data.code === 200) {
             return Promise.resolve(response.data)
         } else if (response.data.code === 403) {
             router.push('/login');
         }
+        ViewUI.LoadingBar.error();
+        ViewUI.Message.error(response.data.msg);
         return Promise.reject(response.data);
     },
     error => {
-        console.log(11111, error);
         ViewUI.LoadingBar.error();
         if(error && error.response){
             let res = {};

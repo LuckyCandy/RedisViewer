@@ -16,6 +16,10 @@ class LoginController extends Controller
 {
     public function login(LoginRequest $request)
     {
-        return ['1' => 2];
+        $user = auth()->user();
+
+        return response()->jsr(200, [
+            'token' => $user->jwt
+        ]);
     }
 }

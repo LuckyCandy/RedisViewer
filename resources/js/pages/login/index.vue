@@ -42,6 +42,7 @@
                     if (valid) {
                         login(this.formInline).then(response => {
                             console.log(response)
+                            window.localStorage.setItem('gaea.token', response.data.token);
                         }).catch(error => {
                             console.log(error)
                         })

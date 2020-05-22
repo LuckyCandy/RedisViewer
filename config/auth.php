@@ -42,10 +42,13 @@ return [
         ],
 
         'api' => [
-            'driver' => 'token',
+            'driver' => 'jwt',
             'provider' => 'users',
             'hash' => false,
-        ],
+            'input_key' => 'token',
+            'storage_key' => 'token',
+            'expire_in' => 7200
+        ]
     ],
 
     /*
