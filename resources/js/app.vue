@@ -18,6 +18,7 @@
     .layout-footer-center{
         text-align: center;
         background: rgb(226, 217, 204);
+        border-top: 1px solid;
     }
     .circle {
         width:350px;
@@ -31,7 +32,7 @@
 <template>
     <div class="layout">
         <Layout :style="{background: 'transparent'}">
-            <Header :style="{position: 'fixed', width: '100%', background:'#e2d9cc'}">
+            <Header :style="{position: 'fixed', width: '100%', background:'#e2d9cc', borderBottom: '1px solid'}">
                 <div class="layout-logo"></div>
                 <div class="user-control">
                     <Button type="text" :style="{color: '#565353'}" ghost @click="showLoginModal">
