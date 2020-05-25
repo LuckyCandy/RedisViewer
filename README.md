@@ -20,5 +20,22 @@
 * XML PHP Extension
 
 ## Install
+1. install backend(php) dependencies  
 ```composer install```
+2. create default environment configuration  
+```cp .env.example .env```
+3. set your database  
+4. set the application key  
+```php artisan key:generate```
+5. install frontend(vue...) dependencies  
+```npm install```
+6. create table  
+```php artisan migrate```
+7. package  
+```npm run dev```
+8. run serve (Serve the application on the PHP development server)
+```php artisan serve```
+
+***PS: If you want to have a try with registered user, run "php artisan db:seed", then you can login in with email:admin@gaea.com and password:123456***
+
 

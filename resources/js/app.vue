@@ -136,6 +136,10 @@
                             this.isDoLogin = false;
                             this.isShowLogin = false;
                             this.handleReset();
+                            this.$Message['success']({
+                                background:true,
+                                content: '登录成功'
+                            });
                         }).catch(error => {
                             this.isDoLogin = false;
                         });
