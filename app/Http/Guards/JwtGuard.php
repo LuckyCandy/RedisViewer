@@ -93,7 +93,7 @@ class JwtGuard extends TokenGuard
     public function login(Authenticatable $user, $remember = false)
     {
 
-        $user->jwt = Jwt::make([
+        $user->token = Jwt::make([
             $user->getAuthIdentifierName() => $user->getAuthIdentifier()
         ],  $this->expire);
 

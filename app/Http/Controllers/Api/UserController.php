@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function user()
     {
-        return auth()->user();
+        return response()->jsr(200, auth()->user());
     }
 }

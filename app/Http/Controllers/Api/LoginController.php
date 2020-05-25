@@ -14,12 +14,14 @@ use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
+    /**
+     * User Login
+     *
+     * @param LoginRequest $request
+     * @return mixed
+     */
     public function login(LoginRequest $request)
     {
-        $user = auth()->user();
-
-        return response()->jsr(200, [
-            'token' => $user->jwt
-        ]);
+        return response()->jsr(200, auth()->user());
     }
 }

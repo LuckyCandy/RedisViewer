@@ -7,9 +7,7 @@
     </head>
     <body>
         <div id="app">
-            <index-component></index-component>
         </div>
-
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

@@ -14,9 +14,8 @@ axios.interceptors.request.use(
     config => {
         ViewUI.LoadingBar.start();
         config.timeout = 10 * 1000;
-        config.auth = {
-            "token": window.localStorage.getItem('gaea.token')
-        };
+        config.headers.Authorization = 'Bearer ' + window.localStorage.getItem('gaea.token');
+
         if (
             config.method.toLocaleUpperCase() === 'POST' ||
             config.method.toLocaleUpperCase() === 'PUT' ||
@@ -34,14 +33,15 @@ axios.interceptors.request.use(
 /* 响应拦截器 */
 axios.interceptors.response.use(
     response => {
-        ViewUI.LoadingBar.finish();
         if (response.data.code === 200) {
+            ViewUI.LoadingBar.finish();
             return Promise.resolve(response.data)
-        } else if (response.data.code === 403) {
-            router.push('/login');
         }
         ViewUI.LoadingBar.error();
-        ViewUI.Message.error(response.data.msg);
+        ViewUI.Message['error']({
+            background: true,
+            content: response.data.msg
+        });
         return Promise.reject(response.data);
     },
     error => {

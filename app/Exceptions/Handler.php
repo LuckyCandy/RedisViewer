@@ -57,7 +57,7 @@ class Handler extends ExceptionHandler
             if ($exception instanceof LoginFailedException) {
                 return response()->jsr(500, [], $exception->getMessage());
             } elseif ($exception instanceof AuthenticationException) {
-                return response()->jsr(403, [], $exception->getMessage());
+                return response()->jsr(403, [], '令牌已过期，需要重新登录');
             }
         }
 
