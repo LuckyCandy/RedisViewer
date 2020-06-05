@@ -5,6 +5,7 @@ import 'view-design/dist/styles/iview.css';
 import App from './app.vue';
 
 window.Vue = require('vue');
+window.EBUS = new Vue();
 Vue.use(ViewUI);
 Vue.use(ViewRouter);
 Vue.config.productionTip = false;

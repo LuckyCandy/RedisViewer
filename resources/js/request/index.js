@@ -37,6 +37,13 @@ axios.interceptors.response.use(
             ViewUI.LoadingBar.finish();
             return Promise.resolve(response.data)
         }
+        /* 如果需要重新登录,则调起登录弹框 */
+        if (response.data.code === 403) {
+            ViewUI.LoadingBar.finish();
+            setTimeout(() => {
+                EBUS.$emit('EVENT-USER-UNLOGIN', '');
+            }, 2000);
+        }
         ViewUI.LoadingBar.error();
         ViewUI.Message['error']({
             background: true,
