@@ -47,7 +47,7 @@ return [
             'hash' => false,
             'input_key' => 'token',
             'storage_key' => 'token',
-            'expire_in' => 7200
+            'expire_in' => 31200
         ]
     ],
 

@@ -3,10 +3,12 @@
 namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -54,13 +56,20 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof NotFoundHttpException) {
+            return $request->expectsJson() ? response()->jsr(404, [], 'Path:' .$request->path(). '不存在') : parent::render($request, $exception);
+        }
         if ($request->expectsJson() || Str::startsWith($request->route()->uri(), 'api/')) {
-            if ($exception instanceof LoginFailedException) {
+            if ($exception instanceof  CustomException) {
+                return response()->jsr(500, [], $exception->getMessage());
+            } elseif ($exception instanceof LoginFailedException) {
                 return response()->jsr(500, [], $exception->getMessage());
             } elseif ($exception instanceof AuthenticationException) {
                 return response()->jsr(403, [], '令牌已过期，需要重新登录');
             } elseif ($exception instanceof ValidationException) {
                 return response()->jsr(501, [], Arr::first($exception->errors())[0]);
+            } elseif ($exception instanceof ModelNotFoundException) {
+                return response()->jsr(404, [], '没有查询到符合的记录');
             }
         }
 

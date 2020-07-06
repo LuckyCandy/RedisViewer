@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
                 $app['request'],
                 $config['input_key'] ?? 'token',
                 $config['storage_key'] ?? 'token',
+                $config['hash'] ?? false,
                 $config['expire_in'] ?? 7200
             );
 

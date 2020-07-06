@@ -1,21 +1,17 @@
 <template>
     <div>
-        <Layout :style="{background: 'transparent'}">
-            <!-- 头部 -->
-            <Row :style="{width: '100%', height: '64px', background:'#0878ec', borderBottom: '1px solid'}">
-                <Col span="20" offset="2">
-                    <div class="layout-logo"></div>
-                    <div class="user-control">
-                        <Avatar :style="{width: '80px', height: '40px', borderRadius: 0}" :src="user.avatar"/>
-                    </div>
-                </Col>
-            </Row>
+        <div class="lc-header">
+            <div class="layout-logo"></div>
+            <div class="user-control">
+                <Avatar :style="{width: '80px', height: '40px', borderRadius: 0}" :src="user.avatar"/>
+            </div>
+        </div>
 
-            <!-- 内容区域 -->
+        <div class="lc-content">
             <router-view></router-view>
-        </Layout>
+        </div>
 
-        <!-- 登录 -->
+        <!-- 登录弹框 -->
         <Modal v-model="isShowLogin" :closable="false" :mask-closable="false" width="350px" :styles="{top: '152px'}">
             <!--<div class="circle"></div>-->
             <div slot="header">
@@ -50,6 +46,15 @@
             return {
                 isShowLogin: false,
                 isDoLogin: false,
+                isWindowContinueChange: false,
+                contentStyle: {
+                    height: '',
+                    display: 'flex',
+                    minHeight: '500px',
+                    minWidth: '900px',
+                    overflow: 'hidden',
+                    background: '#f2f2f2'
+                },
                 formData: {
                     email: '',
                     password: ''
@@ -68,7 +73,6 @@
                 }
             }
         },
-        created() {},
         beforeCreate() {
             EBUS.$on('EVENT-USER-UNLOGIN', () => {
                 this.user.avatar = '/images/un-login.png';
@@ -117,15 +121,39 @@
     @import url("/css/app.css");
     .layout-logo{
         width: 150px;
-        height: 46px;
-        background: url("/images/nav-logo.png") left center no-repeat;
+        height: 40px;
+        background: url(/images/nav-logo.png) left center no-repeat;
         position: relative;
-        top: 8px;
-        float: left;
+        display: inline-block;
+        padding: 8px 10px;
+        top: 15px;
+        left: 10px;
     }
     .user-control{
-        float: right;
-        top: 12px;
         position: relative;
+        top: 15px;
+        float: right;
+        right: 8px;
+    }
+    .lc-header {
+        width: 100%;
+        height: 64px;
+        background: #0878ec;
+        border-bottom: 1px solid;
+        position: absolute;
+    }
+    .lc-content {
+        display: flex;
+        position: absolute;
+        top: 64px;
+        bottom: 0;
+        overflow: hidden;
+        background: rgb(242, 242, 242);
+        width: 100%;
+    }
+    .lc-footer {
+        height: 30px;
+        text-align: center;
+        background: white;
     }
 </style>

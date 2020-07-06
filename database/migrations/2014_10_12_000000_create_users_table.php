@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name')->comment('用户名');
             $table->string('avatar')->comment('用户头像');
-            $table->tinyInteger('is_admin')->comment('是否超管:1-是;-1-否');
+            $table->tinyInteger('is_admin')->comment('是否超管:1-是;-2-否');
+            $table->tinyInteger('is_block')->comment('是否禁用:1-是;-2-否');
             $table->string('email')->unique()->comment('账户');
             $table->string('password')->comment('密码');
             $table->string('reset_password_token')->comment('重置密码验证凭证');

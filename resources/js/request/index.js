@@ -41,6 +41,7 @@ axios.interceptors.response.use(
         if (response.data.code === 403) {
             ViewUI.LoadingBar.finish();
             setTimeout(() => {
+                router.push('/');
                 EBUS.$emit('EVENT-USER-UNLOGIN', '');
             }, 2000);
         }
