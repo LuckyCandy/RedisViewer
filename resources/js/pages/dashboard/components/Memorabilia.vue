@@ -7,6 +7,11 @@
             </p>
             <Timeline :style="{maxHeight: '300px', overflowY: 'scroll', position: 'relative', right: '-25px'}">
                 <TimelineItem>
+                    <Icon type="ios-leaf-outline" size="15" slot="dot" />
+                    <p><b>2021年5月24</b></p>
+                    <p style="font-size: 13px;">修改Redis链接地址过长的展示</p>
+                </TimelineItem>
+                <TimelineItem>
                     <Icon type="ios-ribbon" size="15" slot="dot"/>
                     <p><b>2020年6月4</b></p>
                     <p style="font-size: 13px;">页面布局完成，增加修改信息功能</p>

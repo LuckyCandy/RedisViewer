@@ -16,7 +16,7 @@
                     修改
                 </a>
                 <div>
-                    <p style="text-align: center;font-size: 20px;">{{ client.address }}</p>
+                    <p style="text-align: center;font-size: 20px;text-overflow:ellipsis;white-space: nowrap;overflow: hidden">{{ client.address }}</p>
                     <p style="font-size: 20px">
                         <span class="config" style="border-right: 1px dashed">{{ client.port }}</span>
                         <span class="config">{{ client.db }}</span>

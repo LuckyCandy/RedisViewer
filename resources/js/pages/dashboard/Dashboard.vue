@@ -39,14 +39,12 @@
             <Col :xs="11" :sm="10" :md="14" :lg="15" :xl="17" :xxl="19" style="height: 100%">
                 <div class="product-content">
                     <List :style="{background: 'white'}">
-                        <ListItem v-for="(product, index) in products" :key="index">
-                            <ListItemMeta :avatar="product.icon" :title="product.title" :description="product.desc" />
-                            <template slot="action">
-                                <li>
-                                    <router-link :to="product.to">进入</router-link>
-                                </li>
-                            </template>
-                        </ListItem>
+                        <router-link v-for="(product, index) in products" :key="index" :to="product.to">
+                            <ListItem>
+                                <ListItemMeta :avatar="product.icon" :title="product.title" :description="product.desc" />
+                            </ListItem>
+                            <span></span>
+                        </router-link>
                     </List>
                 </div>
             </Col>
