@@ -1,13 +1,7 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## 基于Laravel、Vue and Vue-Router 开发redis便捷查询应用
+![20210804102025](https://user-images.githubusercontent.com/16129954/129856598-251099f8-d07b-4cdc-a10f-5c7448141efd.jpg)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
-
-## Server Requirements
+### Server Requirements
 * PHP >= 7.2.5
 * BCMath PHP Extension
 * Ctype PHP Extension
@@ -20,22 +14,14 @@
 * XML PHP Extension
 
 ## Install
-1. install backend(php) dependencies  
-```composer install```
-2. create default environment configuration  
-```cp .env.example .env```
-3. set your database  
-4. set the application key  
-```php artisan key:generate```
-5. install frontend(vue...) dependencies  
-```npm install```
-6. create table  
-```php artisan migrate```
-7. package  
-```npm run dev```
-8. run serve (Serve the application on the PHP development server)
-```php artisan serve```
-
-***PS: If you want to have a try with registered user, run "php artisan db:seed", then you can login in with email:admin@gaea.com and password:123456***
-
+|步骤|操作|说明|
+|:----:|----|----|
+|1|```composer install```|Install backend(php) dependencies
+|2|```cp .env.example .env```|Create default environment configuration
+|3|```config/database.php;config/cache.php```|Setup your database configuration, or cache configuration
+|4|```php artisan key:generate```|Setup the application key
+|5|```(c)npm install```|Install frontend(vue...) dependencies
+|6|```php artisan migrate```|Create system table
+|7|```npm run dev;npm run prod```|Package for dev(Test) or prod(Online)
+|8|```php artisan db:seed```|Create system-admin user:admin@gaea.com,pass:123456
 
